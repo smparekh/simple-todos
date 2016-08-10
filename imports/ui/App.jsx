@@ -18,11 +18,11 @@ class App extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+		const text = this.refs.textInput.value.trim();
 
 		Meteor.call('tasks.insert', text);
 
-		ReactDOM.findDOMNode(this.refs.textInput).value = '';
+		this.refs.textInput.value = '';
 	}
 
 	toggleHideCompleted() {
@@ -65,6 +65,7 @@ class App extends Component {
 
 App.propTypes = {
 	tasks: PropTypes.array.isRequired,
+	incompleteCount: PropTypes.number.isRequired,
 };
 
 export default createContainer(() => {
