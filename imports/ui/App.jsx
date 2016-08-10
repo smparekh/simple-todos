@@ -13,7 +13,7 @@ import { eopDailyData } from '../api/eop.js';
 class App extends Component {
 	render() {
 		return (
-			<Griddle results={this.props.eopDaily} columns={["julianDate", "predicted"]} />
+			<Griddle results={this.props.eopDaily} showFilter={true} columns={["julianDate", "predicted"]} />
 		)
 	}
 }
