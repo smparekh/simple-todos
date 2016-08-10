@@ -20,7 +20,7 @@ Meteor.methods({
 		});
 	},
 	'tasks.remove'(taskId) {
-		check(taskId, String);
+		//check(taskId, String);
 		Tasks.remove(taskId);
 	},
 	'tasks.setChecked'(taskId, setChecked) {
