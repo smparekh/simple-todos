@@ -1,78 +1,31 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
+//import { MeteorGriddle } from 'meteor/utilities:meteor-griddle';
+import Griddle from 'griddle-react';
 
-import { Tasks } from '../api/tasks.js';
+//import { Tasks } from '../api/tasks.js';
 
-import Task from './Task.jsx';
+//import Task from './Task.jsx';
 
-// App component - represents the whole app
+import { eopDailyData } from '../api/eop.js';
+
 class App extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			hideCompleted: false,
-		};
-	}
-
-	handleSubmit(event) {
-		event.preventDefault();
-		const text = this.refs.textInput.value.trim();
-
-		Meteor.call('tasks.insert', text);
-
-		this.refs.textInput.value = '';
-	}
-
-	toggleHideCompleted() {
-		this.setState({
-			hideCompleted: !this.state.hideCompleted,
-		});
-	}
-
-	renderTasks() {
-		let filteredTasks = this.props.tasks;
-		if (this.state.hideCompleted) {
-			filteredTasks = filteredTasks.filter(task => !task.checked);
-		}
-		return filteredTasks.map((task) => (
-			<Task key={task._id} task={task} />
-		));
-	}
-
 	render() {
 		return (
-			<div className="container">
-				<header>
-					<h1>Todo: {this.props.incompleteCount} Tasks</h1>
-					<label className="hide-completed">
-						<input type="checkbox" readOnly checked={this.state.hideCompleted} onClick={this.toggleHideCompleted.bind(this)} />
-						Hide Completed Tasks
-					</label>
-					<form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-						<input type="text" ref="textInput" placeholder="Type to add new tasks" />
-					</form>	
-				</header>
-
-				<ul>
-					{this.renderTasks()}
-				</ul>
-			</div>
-		);
+			<Griddle results={this.props.eopDaily} columns={["julianDate", "predicted"]} />
+		)
 	}
 }
 
-App.propTypes = {
-	tasks: PropTypes.array.isRequired,
-	incompleteCount: PropTypes.number.isRequired,
+App.propTypees = {
+	eopDaily: PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
-	Meteor.subscribe('tasks');
+	Meteor.subscribe('eopdaily');
 
 	return {
-		tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-		incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+		eopDaily: eopDailyData.find().fetch(),
 	};
 }, App);
