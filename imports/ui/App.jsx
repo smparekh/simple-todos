@@ -1,14 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
-//import { MeteorGriddle } from 'meteor/utilities:meteor-griddle';
 import Griddle from 'griddle-react';
 import ChartistGraph from 'react-chartist';
-
-//import { Tasks } from '../api/tasks.js';
-
-//import Task from './Task.jsx';
-
 import { eopDailyData } from '../api/eop.js';
 
 class App extends Component {
@@ -28,7 +22,7 @@ class App extends Component {
                 showPoint: false,
                 axisX: {
                     labelInterpolationFnc: function(value) {
-                        // Will return Mon, Tue, Wed etc. on medium screens
+                        // Will return Jan, Feb, Mar etc. on medium screens
                         return value.slice(0, 3);
                     }
                 }
@@ -37,7 +31,7 @@ class App extends Component {
                 showLine: false,
                 axisX: {
                     labelInterpolationFnc: function(value) {
-                        // Will return M, T, W etc. on small screens
+                        // Will return J, F, M etc. on small screens
                         return value[0];
                     }
                 }
@@ -50,12 +44,19 @@ class App extends Component {
                 "locked": false,
                 "visible": true,
                 "displayName": "Julian Date"
+            },
+            {
+                "columnName": "predicted",
+                "order": 2,
+                "locked": false,
+                "visible": true,
+                "customComponent": BooleanComponent
             }
         ];
         return (
             <div>
                 <div>
-                    <Griddle results={this.props.eopDaily} tableClassName={'table table-bordered table-striped table-hover'} useGriddleStyles={false} showFilter={true} enableInfiniteScroll={true} columnMetadata={ julianMetadata } useFixedHeader={true} bodyHeight={400} settingsToggleClassName='btn btn-default' showSettings={true} useCustomPagerComponent={true} customPagerComponent={OtherPager} resultsPerPage={15}/>
+                    <Griddle results={this.props.eopDaily} tableClassName={'table table-bordered table-striped table-hover'} useGriddleStyles={false} showFilter={true} columnMetadata={ julianMetadata } useFixedHeader={true} bodyHeight={400} settingsToggleClassName='btn btn-default' showSettings={true} useCustomPagerComponent={true} customPagerComponent={CustomPager} resultsPerPage={15}/>
                 </div>
                 <div class="ct-chart ct-perfect-fourth">
                     <ChartistGraph data={data} options={options} responsiveOptions={responsiveOptions} type={'Line'} />
@@ -78,7 +79,14 @@ export default createContainer(() => {
 }, App);
 
 
-var OtherPager = React.createClass({
+var BooleanComponent = React.createClass({
+    render: function() {
+        var predicted = this.props.data ? "true" : "false";
+        return <p>{predicted}</p>;
+    }
+});
+
+var CustomPager = React.createClass({
     getDefaultProps: function(){
         return{
             "maxPage": 0,
