@@ -56,7 +56,7 @@ class App extends Component {
         return (
             <div>
                 <div>
-                    <Griddle results={this.props.eopDaily} tableClassName={'table table-bordered table-striped table-hover'} useGriddleStyles={false} showFilter={true} columnMetadata={ julianMetadata } useFixedHeader={true} bodyHeight={400} settingsToggleClassName='btn btn-default' showSettings={true} useCustomPagerComponent={true} customPagerComponent={CustomPager} resultsPerPage={15}/>
+                    <Griddle results={this.props.eopDaily} tableClassName={'table table-bordered table-striped table-hover'} useGriddleStyles={false} showFilter={true} columnMetadata={ julianMetadata } useFixedHeader={true} bodyHeight={400} settingsToggleClassName='btn btn-default' showSettings={true} useCustomPagerComponent={true} customPagerComponent={CustomPager} resultsPerPage={12}/>
                 </div>
                 <div class="ct-chart ct-perfect-fourth">
                     <ChartistGraph data={data} options={options} responsiveOptions={responsiveOptions} type={'Line'} />
