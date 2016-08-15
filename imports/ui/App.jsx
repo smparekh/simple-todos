@@ -54,7 +54,7 @@ class App extends Component {
         ];
         return (
             <div>
-                <div    >
+                <div>
                     <Griddle results={this.props.eopDaily} tableClassName={'table table-bordered table-striped table-hover'} useGriddleStyles={false} showFilter={true} enableInfiniteScroll={true} columnMetadata={ julianMetadata } useFixedHeader={true} bodyHeight={400} settingsToggleClassName='btn btn-default' showSettings={true} useCustomPagerComponent={true} customPagerComponent={OtherPager} resultsPerPage={15}/>
                 </div>
                 <div class="ct-chart ct-perfect-fourth">
