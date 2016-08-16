@@ -54,13 +54,30 @@ class App extends Component {
             }
         ];
         return (
-            <div>
+            <div className="container-fluid">
+                <div className="navbar-header">
+                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span className="sr-only">Toggle navigation</span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                    </button>
+                    <a className="navbar-brand" href="#">Meteor Demo</a>
+                </div>
+                <div id="navbar" className="navbar-collapse collapse">
+                    <ul className="nav navbar-nav">
+                        <li className="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
                 <div>
                     <Griddle results={this.props.eopDaily} tableClassName={'table table-bordered table-striped table-hover'} useGriddleStyles={false} showFilter={true} columnMetadata={ julianMetadata } useFixedHeader={true} bodyHeight={400} settingsToggleClassName='btn btn-default' showSettings={true} useCustomPagerComponent={true} customPagerComponent={CustomPager} resultsPerPage={12}/>
                 </div>
                 <div class="ct-chart ct-perfect-fourth">
                     <ChartistGraph data={data} options={options} responsiveOptions={responsiveOptions} type={'Line'} />
                 </div>
+                <p>FOOTER</p>
             </div>
         )
     }

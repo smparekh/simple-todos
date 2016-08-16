@@ -18,3 +18,7 @@
   /* Make your points appear as squares */
   stroke-linecap: square;
 }
+
+html{
+    overflow-y: auto;
+}
