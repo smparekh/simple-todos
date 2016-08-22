@@ -1,20 +1,41 @@
 /* Some overrides for chartist graphs */
 /* Use this selector to override the line style on a given series */
 .ct-series-a .ct-line {
-  /* Set the colour of this series line */
-  stroke: blue;
-  /* Control the thikness of your lines */
-  stroke-width: 2px;
-  /* Create a dashed line with a pattern */
-/*  stroke-dasharray: 10px 20px;*/
+    /* Set the colour of this series line */
+    stroke: blue;
+    /* Control the thikness of your lines */
+    stroke-width: 2px;
+    /* Create a dashed line with a pattern */
+    /*  stroke-dasharray: 10px 20px;*/
 }
 
 /* This selector overrides the points style on line charts. Points on line charts are actually just very short strokes. This allows you to customize even the point size in CSS */
 .ct-series-a .ct-point {
-  /* Colour of your points */
-  stroke: green;
-  /* Size of your points */
-  stroke-width: 5px;
-  /* Make your points appear as squares */
-  stroke-linecap: square;
+    /* Colour of your points */
+    stroke: green;
+    /* Size of your points */
+    stroke-width: 5px;
+    /* Make your points appear as squares */
+    stroke-linecap: square;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #FFF;
+}
+
+.table {
+    margin-bottom: 0px;
 }
